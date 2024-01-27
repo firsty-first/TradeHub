@@ -75,11 +75,11 @@ public class sign_up_activity extends AppCompatActivity {
 
                                 String id = task.getResult().getUser().getUid();
                                 //user.setProfile_pic("null");
-                                if(database.getReference().child("test").setValue("Hii i m child").isSuccessful())
+                                if(database.getReference().push().child("test").setValue("Hii i m child").isSuccessful())
                                 Log.d("Auth","Database working fine");
                                 else
                                     Log.d("Auth","Database issueeeeeeeeeeeeeee");
-                                database.getReference().child("user").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                database.getReference().push().child("user").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful())

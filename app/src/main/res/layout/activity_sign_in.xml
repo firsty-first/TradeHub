@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
+            
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -94,6 +95,12 @@
                 android:textColor="@color/themeColor"
                 android:textSize="17sp"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google" />
 
         </LinearLayout>
     </ScrollView>
