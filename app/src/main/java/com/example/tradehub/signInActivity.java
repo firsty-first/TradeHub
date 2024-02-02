@@ -158,7 +158,6 @@ public class signInActivity extends AppCompatActivity {
                                 }else {
                                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-
                             }
                         });
 
