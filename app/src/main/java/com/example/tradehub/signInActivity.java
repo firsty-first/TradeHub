@@ -16,27 +16,15 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.example.tradehub.databinding.ActivitySignInBinding;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptionsExtension;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
 
 public class signInActivity extends AppCompatActivity {
     ActivitySignInBinding binding;
     ProgressDialog progressDialog;
     FirebaseAuth auth;
-
-    GoogleSignInClient mG;
-    int RID = 20;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,20 +36,6 @@ public class signInActivity extends AppCompatActivity {
         progressDialog.setMessage("wait while we get you there");
         auth=FirebaseAuth.getInstance();
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                        .requestEmail()
-                                .build();
-
-        mG = GoogleSignIn.getClient(this,gso);
-
-        binding.google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = mG.getSignInIntent();
-                startActivityForResult(i,RID);
-            }
-        });
 
         binding.newUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,16 +78,18 @@ public class signInActivity extends AppCompatActivity {
                 }
             }
         });
-        if( auth.getCurrentUser()==null)
+        if(  auth.getCurrentUser()==null)
             Log.d("user","NoUser");
         if (auth.getCurrentUser()!=null) {
             startActivity(new Intent(signInActivity.this, MainActivity.class));
             finish();
         }
     }
-
-
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        //auth=FirebaseAuth.getInstance();
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -132,42 +108,5 @@ public class signInActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //Toast.makeText(getApplicationContext(),"goes in this",Toast.LENGTH_SHORT).show();
-        if(requestCode == RID){
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-               // Log.d("here",account.toString());
-                //Log.d("here", String.valueOf(task));
-                AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
-                //Log.d("here", String.valueOf(credential));
-                auth.signInWithCredential(credential)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                               // Log.d("here", String.valueOf(task));
-                                if(task.isSuccessful()){
-                                    //Log.d("here", String.valueOf(credential));
-                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                                    startActivity(intent);
-
-                                }else {
-                                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-
-            } catch (ApiException e) {
-                e.printStackTrace();
-            }
-
-        }
-        else {
-            Toast.makeText(getApplicationContext(),"goes in this",Toast.LENGTH_SHORT).show();
-        }
-    }
 }
