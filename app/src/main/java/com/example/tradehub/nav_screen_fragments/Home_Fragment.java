@@ -28,6 +28,8 @@ public class Home_Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     ArrayList<adModel> adArrayList;
+    private RecyclerView recyclerView;
+    private Adapteradvertisement adapter;
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -73,18 +75,25 @@ public class Home_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_, container, false);
+        adArrayList = new ArrayList<>();
         initRecyclerView(view, adArrayList);
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
     private void initRecyclerView(View view, ArrayList<adModel> adArrayList) {
-        Log.d(TAG, "initRecyclerView: init recyclerview");
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = view.findViewById(R.id.rvAdvertisement);
-        recyclerView.setLayoutManager(layoutManager);
-
-        Adapteradvertisement adapter = new Adapteradvertisement(getContext(), adArrayList);
+        recyclerView = view.findViewById(R.id.rvAdvertisement);
+        adModel adModel=new adModel("shoe");
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adArrayList.add(adModel);
+        adapter = new Adapteradvertisement(getContext(), adArrayList); // Pass your data list to the adapter
         recyclerView.setAdapter(adapter);
+
+
     }
 }

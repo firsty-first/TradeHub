@@ -1,11 +1,18 @@
 package com.example.tradehub.pojo;
 
-import android.net.Uri;
-
 public class adModel {
 
     String adImage;
     String adTitle;
+
+    public adModel(String adImage, String adTitle) {
+        this.adImage = adImage;
+        this.adTitle = adTitle;
+    }
+
+    public adModel(String adTitle) {
+        this.adTitle = adTitle;
+    }
 
     public String getAdImage() {
         return adImage;

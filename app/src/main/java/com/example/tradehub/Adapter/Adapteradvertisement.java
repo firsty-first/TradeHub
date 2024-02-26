@@ -39,7 +39,7 @@ public class Adapteradvertisement extends RecyclerView.Adapter {
             adViewholder adViewHolder = (adViewholder) holder;
 
             // Set the image resource for the ImageView
-            adViewHolder.imageView.setImageURI(Uri.parse(adItem.getAdImage()));
+           // adViewHolder.imageView.setImageURI(Uri.parse(adItem.getAdImage()));
 
             // Set the text for the TextView
             adViewHolder.textView.setText(adItem.getAdTitle());
