@@ -7,8 +7,9 @@
 <ImageView
     android:id="@+id/adImage"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/nav_design"
+    android:layout_height="90dp"
+    android:background="@color/teal_700"
+
     android:layout_weight="9"
     />
 

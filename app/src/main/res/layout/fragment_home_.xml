@@ -38,9 +38,11 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProductList"
+        android:layout_weight="0.8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/rv_product_item"
+
         />
 
 

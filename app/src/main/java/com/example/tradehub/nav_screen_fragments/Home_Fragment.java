@@ -1,21 +1,20 @@
 package com.example.tradehub.nav_screen_fragments;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.tradehub.Adapter.AdapterProductListing;
 import com.example.tradehub.Adapter.Adapteradvertisement;
 import com.example.tradehub.R;
 import com.example.tradehub.pojo.adModel;
+import com.example.tradehub.pojo.productModel;
 
 import java.util.ArrayList;
 
@@ -28,8 +27,12 @@ public class Home_Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     ArrayList<adModel> adArrayList;
-    private RecyclerView recyclerView;
-    private Adapteradvertisement adapter;
+    ArrayList<productModel> productArrayList;
+    private RecyclerView recyclerViewadvertisement;
+    private Adapteradvertisement adapteradvertisement;
+    private  RecyclerView recyclerViewProduct;
+    private AdapterProductListing adapterProductListing;
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -76,7 +79,10 @@ public class Home_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_, container, false);
         adArrayList = new ArrayList<>();
-        initRecyclerView(view, adArrayList);
+        productArrayList = new ArrayList<>();
+
+        initAdvertisementRecyclerView(view);
+        initProductRecyclerview(view);
         return view;
     }
 
@@ -86,14 +92,33 @@ public class Home_Fragment extends Fragment {
 
     }
 
-    private void initRecyclerView(View view, ArrayList<adModel> adArrayList) {
-        recyclerView = view.findViewById(R.id.rvAdvertisement);
+    private void initAdvertisementRecyclerView(View view) {
+        recyclerViewadvertisement = view.findViewById(R.id.rvAdvertisement);
         adModel adModel=new adModel("shoe");
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewadvertisement.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         adArrayList.add(adModel);
-        adapter = new Adapteradvertisement(getContext(), adArrayList); // Pass your data list to the adapter
-        recyclerView.setAdapter(adapter);
+        adArrayList.add(new adModel("Boooks"));
+        adArrayList.add(new adModel("Pencil"));
+        adapteradvertisement = new Adapteradvertisement(getContext(), adArrayList); // Pass your data list to the adapter
+        recyclerViewadvertisement.setAdapter(adapteradvertisement);
+    }
+    private void initProductRecyclerview(View view) {
+        recyclerViewProduct = view.findViewById(R.id.rvProductList);
+        productModel productModel=new productModel();
+        productModel.setName("bicycle");
+        productModel.setPrice("399");
+        recyclerViewProduct.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
+     productArrayList.add(productModel);
+     productArrayList.add(productModel);
+     productArrayList.add(productModel);
+     productArrayList.add(productModel);
+     productArrayList.add(productModel);
+     productArrayList.add(productModel);
+     productArrayList.add(productModel);
 
+        productArrayList.add(productModel);
+        adapterProductListing = new AdapterProductListing(getContext(), productArrayList); // Pass your data list to the adapter
+     recyclerViewProduct.setAdapter(adapterProductListing);
     }
 }
