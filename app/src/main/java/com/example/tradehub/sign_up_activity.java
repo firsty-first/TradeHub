@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class sign_up_activity extends AppCompatActivity {
+public class sign_up_activity extends BaseActivity {
     private   FirebaseAuth firebaseAuth;
     FirebaseDatabase database;
     //ProgressDialog progressDialog;

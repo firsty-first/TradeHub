@@ -21,7 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class signInActivity extends AppCompatActivity {
+public class signInActivity extends BaseActivity {
     ActivitySignInBinding binding;
     ProgressDialog progressDialog;
     FirebaseAuth auth;

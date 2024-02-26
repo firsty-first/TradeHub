@@ -16,7 +16,7 @@ import com.example.tradehub.nav_screen_fragments.Home_Fragment;
 import com.example.tradehub.nav_screen_fragments.Profile_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 ActivityMain2Binding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
