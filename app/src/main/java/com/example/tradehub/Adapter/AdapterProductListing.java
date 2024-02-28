@@ -2,6 +2,7 @@ package com.example.tradehub.Adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.tradehub.ProductDetailsActivity;
 import com.example.tradehub.R;
 import com.example.tradehub.pojo.productModel;
 
@@ -47,6 +51,12 @@ public class AdapterProductListing extends RecyclerView.Adapter {
         //TODO: will add in next version
        // productViewholder.productDescription.setText(productModel.getDescription());
         productViewholder.distance.setText(productModel.getName());
+        productViewholder.productCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+  context.startActivity(new Intent(context, ProductDetailsActivity.class));
+            }
+        });
 
     }
 
@@ -57,6 +67,7 @@ public class AdapterProductListing extends RecyclerView.Adapter {
     public class productViewholder extends  RecyclerView.ViewHolder
     {
         ImageView productImage;
+        CardView productCard;
         TextView productName,price,distance,timeRemaining;
         public productViewholder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +76,7 @@ public class AdapterProductListing extends RecyclerView.Adapter {
             price=itemView.findViewById(R.id.price);
             distance=itemView.findViewById(R.id.distance);
             timeRemaining=itemView.findViewById(R.id.timer);
+            productCard=itemView.findViewById(R.id.productCardview);
         }
     }
     
