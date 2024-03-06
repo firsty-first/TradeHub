@@ -1,4 +1,4 @@
-# Sell It - Your Platform for Buying, Selling, and Advertising Used Goods
+# Sell It - Your Platform for Buying, Selling, and Advertising Used/New Goods
 
 Welcome to Sell It, your ultimate destination for buying, selling, and advertising used items! With Sell It, every product gets an equal chance to find its new home within 72 hours, ensuring a dynamic and fair marketplace. Plus, take advantage of our advertisement section to maximize visibility for your listings and reach more potential buyers.
 
