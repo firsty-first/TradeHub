@@ -1,6 +1,4 @@
 package com.example.tradehub.Adapter;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -20,7 +18,6 @@ import com.example.tradehub.pojo.productModel;
 import java.util.ArrayList;
 
 public class AdapterProductListing extends RecyclerView.Adapter {
-
     ArrayList<productModel> productArrayList;
     Context context;
     public AdapterProductListing(Context context, ArrayList<productModel> productArrayList)
@@ -79,5 +76,4 @@ public class AdapterProductListing extends RecyclerView.Adapter {
             productCard=itemView.findViewById(R.id.productCardview);
         }
     }
-    
 }
