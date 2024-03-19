@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tradehub.ProductDetailsActivity;
 import com.example.tradehub.R;
-import com.example.tradehub.pojo.productModel;
+import com.example.tradehub.pojo.Product;
 
 import java.util.ArrayList;
 
 public class AdapterProductListing extends RecyclerView.Adapter {
-    ArrayList<productModel> productArrayList;
+    ArrayList<Product> productArrayList;
     Context context;
-    public AdapterProductListing(Context context, ArrayList<productModel> productArrayList)
+    public AdapterProductListing(Context context, ArrayList<Product> productArrayList)
     {
         this.context=context;
         this.productArrayList=productArrayList;
@@ -35,7 +35,7 @@ public class AdapterProductListing extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        productModel productModel = productArrayList.get(position);
+        Product productModel = productArrayList.get(position);
 
         productViewholder productViewholder = (productViewholder) holder;
 
@@ -43,6 +43,7 @@ public class AdapterProductListing extends RecyclerView.Adapter {
         // adViewHolder.imageView.setImageURI(Uri.parse(adItem.getAdImage()));
 
         // Set the text for the TextView
+
         productViewholder.productName.setText(productModel.getName());
         productViewholder.price.setText(productModel.getPrice());
         //TODO: will add in next version
@@ -51,7 +52,9 @@ public class AdapterProductListing extends RecyclerView.Adapter {
         productViewholder.productCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-  context.startActivity(new Intent(context, ProductDetailsActivity.class));
+                Intent intent=new Intent(context, ProductDetailsActivity.class);
+                intent.putExtra("product",productModel);
+  context.startActivity(intent);
             }
         });
 

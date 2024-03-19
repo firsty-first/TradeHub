@@ -1,6 +1,8 @@
 package com.example.tradehub.pojo;
 
-public class productModel {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     String name, description, category,price , availibilty, image_url, sellerInfo;
     double latitude,longitude;
 

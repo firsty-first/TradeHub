@@ -1,11 +1,14 @@
 package com.example.tradehub.nav_screen_fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +17,14 @@ import com.example.tradehub.Adapter.AdapterProductListing;
 import com.example.tradehub.Adapter.Adapteradvertisement;
 import com.example.tradehub.R;
 import com.example.tradehub.pojo.adModel;
-import com.example.tradehub.pojo.productModel;
+import com.example.tradehub.pojo.Product;
+import com.example.tradehub.sellActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -27,7 +37,7 @@ public class Home_Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     ArrayList<adModel> adArrayList;
-    ArrayList<productModel> productArrayList;
+    ArrayList<Product> productArrayList;
     private RecyclerView recyclerViewadvertisement;
     private Adapteradvertisement adapteradvertisement;
     private  RecyclerView recyclerViewProduct;
@@ -80,7 +90,15 @@ public class Home_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_, container, false);
         adArrayList = new ArrayList<>();
         productArrayList = new ArrayList<>();
+        //viewbinding
+        view.findViewById(R.id.filter).setOnClickListener(new View.OnClickListener() {;
 
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), sellActivity.class);
+                    startActivity(intent);
+                }
+            });
         initAdvertisementRecyclerView(view);
         initProductRecyclerview(view);
         return view;
@@ -104,21 +122,41 @@ public class Home_Fragment extends Fragment {
     }
     private void initProductRecyclerview(View view) {
         recyclerViewProduct = view.findViewById(R.id.rvProductList);
-        productModel productModel=new productModel();
-        productModel.setName("bicycle");
-        productModel.setPrice("399");
         recyclerViewProduct.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
-     productArrayList.add(productModel);
-     productArrayList.add(productModel);
-     productArrayList.add(productModel);
-     productArrayList.add(productModel);
-     productArrayList.add(productModel);
-     productArrayList.add(productModel);
-     productArrayList.add(productModel);
+        // Initialize an empty ArrayList to hold the products
+        productArrayList = new ArrayList<>();
 
-        productArrayList.add(productModel);
-        adapterProductListing = new AdapterProductListing(getContext(), productArrayList); // Pass your data list to the adapter
-     recyclerViewProduct.setAdapter(adapterProductListing);
+        // Initialize Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Get a reference to the "products" collection
+        CollectionReference productsRef = db.collection("products");
+
+        // Query the products collection
+        productsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                // Loop through the documents in the query result
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    // Convert each document to a Product object
+                    Product product = document.toObject(Product.class);
+                    // Add the product to the ArrayList
+                    productArrayList.add(product);
+                }
+                Log.d("Firestore", "Products: " + productArrayList.get(0).getName());
+                // Create an adapter with the updated productArrayList
+                adapterProductListing = new AdapterProductListing(getContext(), productArrayList);
+                // Set the adapter to the RecyclerView
+                recyclerViewProduct.setAdapter(adapterProductListing);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle errors
+                Log.e("Firestore", "Error getting documents: " + e);
+            }
+        });
     }
+
 }
