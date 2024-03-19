@@ -23,8 +23,9 @@ Welcome to Sell It, your ultimate destination for buying, selling, and advertisi
 2. **Promote Your Listings**: Enhance the visibility of your listings by advertising them in our dedicated section. Choose from various advertising options to target specific audiences and increase your chances of selling your items quickly.
 
 3. **Browse and Buy**: Discover a wide range of items from sellers across the platform. With the 72-hour selling window, you'll have plenty of opportunities to find hidden treasures and great deals.
-
-4. **Secure Transactions**: Complete your transactions safely and securely through Sell It's trusted payment system. Communicate with sellers directly and finalize your purchases with peace of mind.
+4. **Geofencing Alerts**: Notify users when new items are listed or when there are potential transactions available in their neighborhood through geofencing alerts.
+5. **Pickup and Delivery Options**: Allow users to choose between pickup and delivery options for their transactions.
+6. **Secure Transactions**: Complete your transactions safely and securely through Sell It's trusted payment system. Communicate with sellers directly and finalize your purchases with peace of mind.
 
 ## Get Started Today!
 Under construction
