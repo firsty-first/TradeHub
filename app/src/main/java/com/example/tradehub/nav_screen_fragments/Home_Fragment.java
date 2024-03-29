@@ -134,6 +134,7 @@ public class Home_Fragment extends Fragment {
         CollectionReference productsRef = db.collection("products");
 
         // Query the products collection
+        if(productsRef!=null)
         productsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -144,8 +145,7 @@ public class Home_Fragment extends Fragment {
                     // Add the product to the ArrayList
                     productArrayList.add(product);
                 }
-                Log.d("Firestore", "Products: " + productArrayList.get(0).getName());
-                // Create an adapter with the updated productArrayList
+
                 adapterProductListing = new AdapterProductListing(getContext(), productArrayList);
                 // Set the adapter to the RecyclerView
                 recyclerViewProduct.setAdapter(adapterProductListing);
