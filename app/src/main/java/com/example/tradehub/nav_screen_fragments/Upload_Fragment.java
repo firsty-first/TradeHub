@@ -12,10 +12,10 @@ import com.example.tradehub.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Cart_Fragment#newInstance} factory method to
+ * Use the {@link Upload_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Cart_Fragment extends Fragment {
+public class Upload_Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Cart_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Cart_Fragment() {
+    public Upload_Fragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class Cart_Fragment extends Fragment {
      * @return A new instance of fragment Cart_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Cart_Fragment newInstance(String param1, String param2) {
-        Cart_Fragment fragment = new Cart_Fragment();
+    public static Upload_Fragment newInstance(String param1, String param2) {
+        Upload_Fragment fragment = new Upload_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class Cart_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_cart_, container, false);
+        return inflater.inflate(R.layout.fragment_upload, container, false);
     }
 }

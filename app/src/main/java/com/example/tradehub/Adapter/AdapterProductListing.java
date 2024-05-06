@@ -1,6 +1,7 @@
 package com.example.tradehub.Adapter;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tradehub.ProductDetailsActivity;
 import com.example.tradehub.R;
 import com.example.tradehub.pojo.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -49,6 +51,8 @@ public class AdapterProductListing extends RecyclerView.Adapter {
         //TODO: will add in next version
        // productViewholder.productDescription.setText(productModel.getDescription());
         productViewholder.distance.setText(productModel.getName());
+
+        Picasso.get().load(productModel.getImage_url()).placeholder(R.drawable.icon).into(productViewholder.productImage);
         productViewholder.productCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +81,7 @@ public class AdapterProductListing extends RecyclerView.Adapter {
             distance=itemView.findViewById(R.id.distance);
             timeRemaining=itemView.findViewById(R.id.timer);
             productCard=itemView.findViewById(R.id.productCardview);
+
         }
     }
 }
