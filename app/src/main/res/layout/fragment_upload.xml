@@ -1,61 +1,102 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".nav_screen_fragments.Upload_Fragment">
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:visibility="visible">
 
         <!-- Placeholder for Image -->
-        <ImageView
-            android:id="@+id/imageView_item"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/icon"
-            android:scaleType="centerCrop"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"/>
 
         <!-- EditText to set the price -->
-        <EditText
-            android:id="@+id/editText_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imageView_item"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Enter Price"
-            android:inputType="numberDecimal"/>
-        <EditText
-            android:id="@+id/editText_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editText_price"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Enter title"
-            android:inputType="text"/>
 
         <!-- Button to upload the item for sale -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/actionMenuTextColor"
+            android:padding="5dp"
+            app:cardCornerRadius="4dp">
+
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp" />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:visibility="gone"
+            app:cardElevation="4dp"
+            android:layout_margin="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                        <!-- Poll Question TextView -->
+                        <TextView
+                            android:id="@+id/text_question"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="What is your favorite programming language?"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!-- Poll Option Radio Buttons -->
+                        <RadioGroup
+                            android:id="@+id/radio_group_options"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                                <RadioButton
+                                    android:id="@+id/radio_option1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Option 1"
+                                    android:checked="true" />
+
+                        </RadioGroup>
+
+                        <!-- Button to add more options -->
+                        <Button
+                            android:id="@+id/btn_add_option"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Add Option"
+                            android:textSize="16sp" />
+
+                        <!-- Submit Button -->
+                        <Button
+                            android:id="@+id/btn_submit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Submit"
+                            android:textSize="16sp" />
+
+                </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
         <Button
             android:id="@+id/button_upload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/editText_title"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="Upload for Sale"/>
+            android:text="Upload for Sale" />
 
         <!-- Optional Button to cancel the upload -->
-        <Button
-            android:id="@+id/button_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/button_upload"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Cancel Upload"/>
 
-    </RelativeLayout>
+</LinearLayout>
