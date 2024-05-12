@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.tradehub.Utility.FirebaseHelper;
-import com.example.tradehub.Utility.ImagePicker;
+import com.example.tradehub.Utility.ImagePickerr;
 import com.example.tradehub.databinding.ActivityAddItemtoSellBinding;
 import com.example.tradehub.pojo.Product;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,7 +21,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import com.google.firebase.storage.UploadTask;
 public class sellActivity extends AppCompatActivity {
@@ -40,7 +38,7 @@ public class sellActivity extends AppCompatActivity {
         binding.imageViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImagePicker.openCameraOrGallery(sellActivity.this);
+                ImagePickerr.openCameraOrGallery(sellActivity.this);
 
             }
         });
@@ -116,10 +114,10 @@ public class sellActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            if (requestCode == ImagePicker.REQUEST_GALLERY && data != null) {
+            if (requestCode == ImagePickerr.REQUEST_GALLERY && data != null) {
                 // User selected an image from the gallery
                 Uri selectedImageUri = data.getData();
-                File selectedImage = ImagePicker.getFileFromUri(this, selectedImageUri);
+                File selectedImage = ImagePickerr.getFileFromUri(this, selectedImageUri);
                 binding.imageViewItem.setImageURI(selectedImageUri);
 
 
@@ -136,10 +134,10 @@ public class sellActivity extends AppCompatActivity {
                     }
                 });
                 // Now you can use the selectedImageUri to do further processing, such as displaying the image in an ImageView or uploading it to a server
-            } else if (requestCode == ImagePicker.REQUEST_CAMERA) {
+            } else if (requestCode == ImagePickerr.REQUEST_CAMERA) {
                 // User captured an image with the camera
                 // Get the URI of the saved image file
-                File photoFile = ImagePicker.getLastCapturedImageFile(getApplicationContext());
+                File photoFile = ImagePickerr.getLastCapturedImageFile(getApplicationContext());
                 if (photoFile != null) {
 
                     binding.imageViewItem.setImageURI(photoURI);

@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class ImagePicker {
+public class ImagePickerr {
 
     // Request code for picking an image from the gallery
     public static final int REQUEST_GALLERY = 1;
